@@ -3,12 +3,10 @@ import logging
 from aiogram import Bot
 from aiogram.client.session import aiohttp
 from aiogram.filters import Command
-from aiogram import Dispatcher, F
+from aiogram import Dispatcher
 from aiogram.types import Message
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 import os
-
-from pydantic import types
 
 load_dotenv()
 
