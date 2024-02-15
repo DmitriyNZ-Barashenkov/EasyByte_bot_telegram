@@ -5,15 +5,17 @@ from aiogram.client.session import aiohttp
 from aiogram.filters import Command
 from aiogram import Dispatcher, F
 from aiogram.types import Message
+from dotenv import load_dotenv, find_dotenv
+import os
 
+from pydantic import types
 
-
-
+load_dotenv()
 
 
 dp = Dispatcher()
 
-bot = Bot("6732280199:AAE0p50nn38m6zx8_YUUr4scVY0fbY0rFSc")
+bot = Bot(os.getenv("TOKEN"))
 
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - [%(levelname)s] -  %(name)s - "
