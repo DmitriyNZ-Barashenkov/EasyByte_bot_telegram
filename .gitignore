@@ -1,0 +1,4 @@
+easybyte/
+.idea/
+/.env
+__pycache__/
