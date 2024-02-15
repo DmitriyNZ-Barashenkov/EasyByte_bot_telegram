@@ -81,7 +81,8 @@ async def cmd_convert(message: Message):
 
 @dp.message()
 async def handle_text(message: Message):
-    logger.info(f"Пользователь {message.from_user.username} отправил сообщение: {message.text}")
+    log=logger.info(f"Пользователь {message.from_user.full_name} отправил сообщение: {message.text}")
+    print(log)
     text = message.text.lower()
     if text.startswith('привет'):
         await message.answer("Привет!")
