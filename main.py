@@ -46,8 +46,9 @@ async def cmd_help(message: Message):
 
 @dp.message(Command(commands=["convert", "conv", "конвертировать"]))
 async def cmd_convert(message: Message):
-    await message.answer("Введите сумму и валюту для конвертации (например, '10 USD to RUB'):")
-
+    #await message.answer("Введите сумму и валюту для конвертации (например, '10 USD to RUB'):")
+    # разбивается на части с помощью метода split(),
+    # чтобы получить сумму, исходную валюту и целевую валюту.
     user_input = message.text.split()
 
     if len(user_input) != 4:
@@ -63,13 +64,13 @@ async def cmd_convert(message: Message):
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
             if response.status != 200:
-                await message.reply("Не удалось получить данные о курсе валют.")
+                await message.answer("Не удалось получить данные о курсе валют.")
                 return
 
             data = await response.json()
 
     if to_currency not in data['rates']:
-        await message.reply("Неверно указана валюта для конвертации!")
+        await message.answer("Неверно указана валюта для конвертации!")
         return
 
     rate = data['rates'][to_currency]
@@ -83,9 +84,9 @@ async def handle_text(message: Message):
     logger.info(f"Пользователь {message.from_user.username} отправил сообщение: {message.text}")
     text = message.text.lower()
     if text.startswith('привет'):
-        await message.reply("Привет!")
+        await message.answer("Привет!")
     elif text.startswith('пока') or text.startswith('до свидания'):
-        await message.reply("Пока!")
+        await message.answer("Пока!")
 
 async def main():
     await bot.delete_webhook(drop_pending_updates=True)
